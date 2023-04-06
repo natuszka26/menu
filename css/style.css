@@ -1,156 +1,701 @@
-* {
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
+.color {
+  background-color: red;
+}
+
+.white-block {
+  position: absolute;
+  height: 40px;
+  width: 60%;
+  background-color: #fff;
+}
+.white-block-left {
+  bottom: 0;
+  left: -50px;
+  transform: skew(45deg);
+}
+
+.blue-block {
+  position: absolute;
+  height: 40px;
+  width: 60%;
+  background-color: #71a8d0;
+}
+.blue-block-left {
+  bottom: 0;
+  left: -50px;
+  transform: skew(45deg);
+}
+
+.btn-special-animation {
+  position: relative;
+  transition: background-color 1s;
+  overflow: hidden;
+  z-index: 0;
+}
+.btn-special-animation::before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: right;
+  transition: transform 0.5s;
+  z-index: -1;
+  transform: scaleX(0);
+}
+.btn-special-animation:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.section-heading {
+  position: relative;
+  margin: 3em;
+  font-size: 4em;
+  font-weight: 1000;
+  text-align: center;
+  color: #71a8d0;
+  letter-spacing: 2px;
+}
+
+.section-padding {
+  padding: 1em 1em;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
-	height: 100vh;
-	font-family: 'Ubuntu', sans-serif;
-	overflow: hidden;
-	color: #fff;
-	background: linear-gradient(10deg, #2483ff 60%, #2c6afb 60%);
+  font-family: "Raleway", sans-serif;
+  font-size: 1.6rem;
+}
+
+.burger-btn {
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  padding: 1em;
+  background: none;
+  border: 1px solid transparent;
+  cursor: pointer;
+  z-index: 1000;
+}
+.burger-btn:focus {
+  outline: none;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 8px;
+}
+.burger-btn:hover .burger-btn__bars::after,
+.burger-btn:hover .burger-btn__bars::before {
+  width: 100%;
+}
+.burger-btn__box {
+  position: relative;
+  height: 5em;
+  width: 8em;
+}
+.burger-btn__bars, .burger-btn__bars::after, .burger-btn__bars::before {
+  position: absolute;
+  height: 3px;
+  background-color: #fff;
+  content: "";
+  top: 3px;
+  transition: width 0.3s;
+  right: 0px;
+}
+.burger-btn__bars {
+  width: 100%;
+}
+.burger-btn__bars::after {
+  top: 33px;
+  width: 50%;
+}
+.burger-btn__bars::before {
+  top: 66px;
+  width: 25%;
 }
 
 .nav {
-	margin-top: 100px;
-	background-color: #292929;
-	text-align: center;
+  position: fixed;
+  top: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: #71a8d0;
+  z-index: 900;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: translateX(100%);
+  transition: 0.5s cubic-bezier(0.65, 0.05, 0.36, 1);
+}
+.nav--active {
+  transform: translateX(0);
+}
+.nav__item {
+  position: relative;
+  display: block;
+  color: #fff;
+  margin: 0.5em 0;
+  padding: 0.5em 2em;
+  text-decoration: none;
+  font-size: 3em;
+}
+.nav__item::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 3px;
+  height: 100%;
+  background-color: #fff;
+  content: "";
+  z-index: 100;
+  transform: scaleY(0);
+  transition: transform 0.3s;
+}
+.nav__item:hover::before {
+  transform: scaleY(1);
 }
 
-ul {
-	list-style: none;
-	font-size: 24px;
+@keyframes navItemsAnimation {
+  from {
+    transform: translateX(200%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+.nav-items-animation {
+  animation: navItemsAnimation 1.5s both;
 }
 
-.menu-item {
-	display: inline-block;
-	height: 100px;
-	width: 300px;
-	line-height: 100px;
-	cursor: pointer;
-	transition: background-color 0.2s;
+.header {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 2em;
+  height: 75vh;
+  text-align: center;
+  color: #fff;
+  background-image: linear-gradient(45deg, rgba(123, 158, 215, 0.75), rgba(147, 163, 180, 0.75)), url("../jpg/header.jpg");
+  background-size: cover;
+  background-position: center;
+  font-size: 2em;
+}
+.header__heading {
+  font-family: "Playfair Display", serif;
+  font-weight: 200;
+}
+.header__text {
+  margin-top: 2rem;
+  font-size: 2rem;
+}
+.header__btn {
+  background: #fff;
+  margin-top: 8em;
+  padding: 0.8em 1.6em;
+  font-size: 3em;
+  border: none;
+  color: #2e2e2e;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-radius: 3px;
+  width: 17em;
+  height: 5em;
+  line-height: 3.5em;
+  font-weight: bolder;
+}
+.header__btn::before {
+  background-color: rgb(223, 221, 221);
 }
 
-.menu-item:hover {
-	background-color: #363636;
+.dreams {
+  position: relative;
+}
+.dreams__box {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.dreams__title {
+  font-weight: 1000;
+  font-size: 1.5em;
+  color: #71a8d0;
+  text-align: center;
+}
+.dreams__text {
+  font-size: 0.7em;
+  text-align: center;
+}
+.dreams img {
+  padding: 1em;
+  margin: 1.5em;
+  width: 20em;
+  border: 1px solid #71a8d0;
 }
 
-.dropdown {
-	position: absolute;
-	width: 300px;
+.last__minute {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  font-size: 1em;
+  letter-spacing: 1px;
+  text-decoration: none;
+  list-style-type: none;
+  justify-content: space-evenly;
+  padding: 4em;
+  background-color: #71a8d0;
+}
+.last__minute h2 {
+  margin: 1em;
+  font-size: 1.5em;
+  color: #fff;
+}
+.last__minute-one {
+  border: 2px solid #fff;
+  padding: 2em;
+  width: 50%;
+  margin: 2em;
+}
+.last__minute-one h3 {
+  background-color: #fff;
+  height: 3em;
+  position: relative;
+  line-height: 3em;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  padding-left: 1em;
+}
+.last__minute-one h3 strong {
+  position: absolute;
+  right: 0;
+  padding-right: 1em;
+}
+.last__minute-one li {
+  position: relative;
+  border: 2px solid #fff;
+  margin-bottom: 1em;
+  padding: 1em;
+  font-weight: bolder;
+  cursor: pointer;
+}
+.last__minute-one li strong {
+  position: absolute;
+  right: 0;
+  padding-right: 1em;
+}
+.last__minute-one li:hover {
+  background-color: #fff;
+}
+.last__minute-two {
+  border: 2px solid #fff;
+  padding: 2em;
+  width: 50%;
+  margin: 2em;
+}
+.last__minute-two h3 {
+  background-color: #fff;
+  height: 3em;
+  position: relative;
+  line-height: 3em;
+  margin-bottom: 2em;
+  margin-top: 1em;
+  padding-left: 1em;
+}
+.last__minute-two h3 strong {
+  position: absolute;
+  right: 0;
+  padding-right: 1em;
+}
+.last__minute-two li {
+  position: relative;
+  border: 2px solid #fff;
+  margin-bottom: 1em;
+  padding: 1em;
+  font-weight: bolder;
+  cursor: pointer;
+  display: flex;
+  flex-direction: row;
+}
+.last__minute-two li strong {
+  position: absolute;
+  right: 0;
+  padding-right: 1em;
+}
+.last__minute-two li:hover {
+  background-color: #fff;
 }
 
-.dropdown li {
-	background-color: #50515a;
-	transition: 0.3s;
-	display: none;
-	opacity: 0;
+.footer__text {
+  margin: 2em;
+  font-weight: 800;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.dropdown li:hover {
-	background-color: #34353c;
-	color: royalblue;
+@media (min-width: 320px) {
+  .white-block {
+    height: 25px;
+    width: 50%;
+  }
+  .blue-block {
+    height: 25px;
+    width: 50%;
+  }
+  .section-heading {
+    font-size: 0.9em;
+  }
+  .burger-btn {
+    top: 20px;
+    right: 35px;
+  }
+  .burger-btn__box {
+    position: relative;
+    height: 0.5em;
+    width: 0.6em;
+  }
+  .burger-btn__bars::after {
+    top: 10px;
+  }
+  .burger-btn__bars::before {
+    top: 20px;
+  }
+  .nav__item {
+    font-size: 1.4em;
+  }
+  .header {
+    height: 40vh;
+  }
+  .header__heading {
+    font-size: 1em;
+  }
+  .header__text {
+    margin-top: 2rem;
+    font-size: 1rem;
+  }
+  .header__btn {
+    margin-top: 7em;
+    padding: 0.8em 1.6em;
+    font-size: 0.19em;
+  }
+  .dreams__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .dreams__title {
+    font-weight: 1000;
+    font-size: 1.2em;
+    text-align: center;
+  }
+  .dreams__text {
+    font-size: 0.7em;
+    text-align: center;
+    margin: 3em;
+    margin-bottom: 9em;
+  }
+  .dreams img {
+    width: 20em;
+  }
+  .last__minute {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .last__minute h3 {
+    font-size: 1em;
+  }
+  .last__minute-one {
+    font-size: 0.3em;
+    width: 60em;
+    height: 80em;
+    margin: 10em;
+  }
+  .last__minute-one h3 {
+    font-size: 2.5em;
+  }
+  .last__minute-one li {
+    height: 5em;
+    font-size: 2em;
+    line-height: 2.5em;
+  }
+  .last__minute-two {
+    font-size: 0.3em;
+    width: 60em;
+    height: 80em;
+    margin: 10em;
+  }
+  .last__minute-two h3 {
+    font-size: 2.5em;
+  }
+  .last__minute-two li {
+    height: 5em;
+    font-size: 2em;
+  }
+  .footer__text {
+    font-size: 0.6em;
+  }
 }
-
-.menu-item:hover .dropdown li {
-	display: block;
-	animation: menu1 0.5s forwards;
-	animation-delay: 0.2s;
+@media (min-width: 576px) {
+  .white-block {
+    height: 30px;
+    width: 50%;
+  }
+  .blue-block {
+    height: 30px;
+    width: 50%;
+  }
+  .section-heading {
+    font-size: 1.4em;
+  }
+  .burger-btn {
+    top: 20px;
+    right: 40px;
+  }
+  .burger-btn__box {
+    position: relative;
+    height: 0.5em;
+    width: 0.4em;
+  }
+  .burger-btn__bars::after {
+    top: 10px;
+  }
+  .burger-btn__bars::before {
+    top: 20px;
+  }
+  .nav__item {
+    font-size: 1.6em;
+  }
+  .header {
+    height: 50vh;
+  }
+  .header__heading {
+    font-weight: 200;
+    font-size: 2em;
+  }
+  .header__text {
+    margin-top: 3rem;
+    font-size: 1.3rem;
+  }
+  .header__btn {
+    margin-top: 4em;
+    font-size: 0.26em;
+  }
+  .dreams__box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .dreams__title {
+    font-size: 1.5em;
+  }
+  .dreams__text {
+    font-size: 0.7em;
+  }
+  .dreams img {
+    width: 25em;
+  }
+  .last__minute .blue-block {
+    height: 40px;
+    width: 60%;
+  }
+  .last__minute h2 {
+    font-size: 1.5em;
+    margin-bottom: 2.3em;
+  }
+  .last__minute-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .last__minute-one {
+    font-size: 0.25em;
+    margin: 2em;
+  }
+  .last__minute-one h3 {
+    font-size: 2.5em;
+    margin-bottom: 1em;
+  }
+  .last__minute-one li {
+    font-size: 2em;
+  }
+  .last__minute-two {
+    font-size: 0.25em;
+    margin: 2em;
+  }
+  .last__minute-two h3 {
+    font-size: 2.5em;
+  }
+  .last__minute-two li {
+    font-size: 2em;
+  }
+  .footer__text {
+    font-size: 0.7em;
+  }
 }
-
-
-.menu-item:hover .dropdown li:nth-child(1) {
-
-	
-	animation-delay: 0.4s;
+@media (min-width: 768px) {
+  .section-heading {
+    font-size: 1.8em;
+  }
+  .nav__item {
+    font-size: 2em;
+  }
+  .header {
+    height: 50vh;
+  }
+  .header__heading {
+    font-size: 1.8em;
+  }
+  .header__text {
+    margin-top: 3rem;
+    font-size: 1.4rem;
+  }
+  .header__btn {
+    margin-top: 5em;
+    font-size: 0.3em;
+  }
+  .dreams__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: left;
+  }
+  .dreams__title {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .dreams__text {
+    font-size: 0.7em;
+    text-align: center;
+  }
+  .dreams img {
+    width: 25em;
+    margin-bottom: 10em;
+  }
+  .last__minute h2 {
+    font-size: 2em;
+  }
+  .last__minute-one {
+    font-size: 0.3em;
+    margin: 7em;
+  }
+  .last__minute-one h3 {
+    font-size: 2.5em;
+  }
+  .last__minute-one li {
+    font-size: 2em;
+  }
+  .last__minute-two {
+    font-size: 0.3em;
+    margin: 7em;
+  }
+  .last__minute-two h3 {
+    font-size: 2.5em;
+  }
+  .last__minute-two li {
+    font-size: 2em;
+  }
 }
-.menu-item:hover .dropdown li:nth-child(2) {
-
-	
-	animation-delay: 0.6s;
-}
-.menu-item:hover .dropdown li:nth-child(3) {
-
-	
-	animation-delay: 0.8s;
-}
-.menu-item:hover .dropdown li:nth-child(4) {
-	
-	
-	animation-delay: 1s;
-}
-.menu-item:hover .dropdown li:nth-child(5) {
-
-	
-	animation-delay: 1.2s;
-}
-.menu-item:hover .dropdown li:nth-child(6) {
-	
-	
-	animation-delay: 1.4s;
-}
-
-@keyframes menu1 {
-	from {
-		opacity: 0;
-		transform: rotate(36deg);
-	}
-
-	to {
-		opacity: 1;
-		transform: rotate(0);
-	}
-}
-
-.two:hover .dropdown li {
-
-	animation: menu2 .5s forwards;
-}
-
-@keyframes menu2 {
-	from {
-		opacity: 0;
-		transform: translateY(60px);
-	}
-
-	to {
-		opacity: 1;
-		transform: translateY(0px);
-	}
-}
-
-
-.three:hover .dropdown li{
-	animation: menu3 .5s forwards;
-}
-
-@keyframes menu3 {
-	from {
-		opacity: 0;
-		transform: translateX(60px) rotateY(-60deg);
-	}
-
-	to {
-		opacity: 1;
-		transform: translateX(0px) rotateY(0);
-	}
-}
-
-
-.four:hover .dropdown li{
-	animation: menu4 .5s forwards;
-	transform-origin: top;
-}
-
-@keyframes menu4 {
-	from {
-		opacity: 0;
-		transform: scale(.8) translateY(-40px)
-	}
-
-	to {
-		opacity: 1;
-		transform: scale(1) translateY(0)
-	}
-}
+@media (min-width: 992px) {
+  .white-block {
+    height: 60px;
+    width: 60%;
+  }
+  .blue-block {
+    height: 60px;
+    width: 60%;
+  }
+  .section-heading {
+    font-size: 2em;
+    margin-bottom: 0.3em;
+  }
+  .burger-btn {
+    top: 20px;
+    right: 40px;
+  }
+  .burger-btn__box {
+    position: relative;
+    height: 1em;
+    width: 2.5em;
+  }
+  .burger-btn__bars::after {
+    top: 15px;
+  }
+  .burger-btn__bars::before {
+    top: 30px;
+  }
+  .nav__item {
+    font-size: 3em;
+  }
+  .header {
+    height: 80vh;
+  }
+  .header__heading {
+    font-weight: 200;
+    font-size: 2.3em;
+  }
+  .header__text {
+    margin-top: 1em;
+    font-size: 0.6em;
+  }
+  .header__btn {
+    margin-top: 7em;
+    font-size: 0.4em;
+  }
+  .dreams__box {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 4em;
+  }
+  .dreams__box-img--right {
+    justify-content: right;
+    order: 1;
+  }
+  .dreams__title {
+    font-size: 1.5em;
+    text-align: center;
+  }
+  .dreams__text {
+    font-size: 1em;
+    text-align: center;
+  }
+  .dreams img {
+    width: 50em;
+  }
+  .last__minute h2 {
+    font-size: 2em;
+    margin-top: 0.2em;
+  }
+  .last__minute-one {
+    font-size: 0.4em;
+  }
+  .last__minute-two {
+    font-size: 0.4em;
+  }
+  .footer__text {
+    font-size: 1em;
+  }
+}/*# sourceMappingURL=style.css.map */
